@@ -33,6 +33,7 @@ import axios from 'axios';
 import Resume from './pages/Resume/Resume';
 import ScrollToTop from './components/layout/Gotop';
 import Apply from './pages/Apply';
+import PasswordResetForm from './pages/PasswordResetForm';
 
 axios.defaults.baseURL = 'http://localhost:4000';
 axios.defaults.params = {};
@@ -69,7 +70,7 @@ function App() {
         <Route exact path={`/signup`} component={ Register } />
         <Route exact path={`/apply`} component={ Apply } />
         <Route exact path={`/resume`} component={ Resume } />
-
+        <Route exact path={'/passreset'} component={PasswordResetForm} />
         <ScrollToTop />
       </Router>
     </div>

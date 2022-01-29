@@ -132,7 +132,7 @@ const Login = () => {
                                                                         <div className="forgot-pwd text-center mt-5">
                                                                             <p><a href="#" className="text-theme-SkinColor">Forgot Password?</a></p>
                                                                             <input className="w-auto mr-10" id="cookies-consent" name="cookies-consent" type="checkbox" value="yes" />
-                                                                            <span>Remember Password</span>
+                                                                            <span>Remember Me</span>
                                                                             <p className="mt-3">Don't have account? <Link to='/signup' className="text-theme-SkinColor">Sign Up here</Link></p>
                                                                         </div>
                                                                     </label>

@@ -12,7 +12,7 @@ export class Footer extends Component {
                                     <div className="footer-logo">
                                         <img id="footer-logo-img" className="img-fluid auto_size" height="40" width="162" src="images/footer-logo.svg" alt="footer-logo" />
                                     </div>
-                                    <p>HireCo is multi award-winning executive search, management recruiter and employer branding organization. 
+                                    <p>Volunteers is multi award-winning executive search, management recruiter and employer branding organization. 
                                         Our customized recruiting process delivers fast & accurate results</p>
                                     <div className="d-flex align-items-center pt-15 pb-25">
                                         <h6 className="fw-normal">Social Share: </h6>
@@ -83,7 +83,7 @@ export class Footer extends Component {
                     </div>
                 </div>
                 <div className="bottom-footer-text">
-                    <div className="container">
+                    {/* <div className="container">
                         <div className="row">
                             <div className="col-lg-8 col-md-6">
                                 <span className="copyright">Copyright © 2021 <a href={'/'}>HireCo </a>All rights reserved.
@@ -92,8 +92,8 @@ export class Footer extends Component {
                                     <li><a href={'/'}>Privacy & Policy</a></li>
                                     <li><a href={'/'}>Terms & Conditions</a></li>
                                 </ul>
-                            </div>
-                            <div className="col-lg-4 col-md-6 d-lg-flex align-items-center justify-content-between">
+                            </div> */}
+                            {/* <div className="col-lg-4 col-md-6 d-lg-flex align-items-center justify-content-between">
                                 <form id="subscribe-form" className="subscribe-form">
                                     <div className="mailchimp-inputbox clearfix" id="subscribe-content"> 
                                         <input type="email" name="EMAIL" id="txtemail" placeholder="Enter Your Email Address..." required="" />
@@ -102,9 +102,9 @@ export class Footer extends Component {
                                         </button>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
+                            </div> */}
+                        {/* </div>
+                    </div> */}
                 </div>
             </footer>
         )

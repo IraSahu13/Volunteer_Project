@@ -66,7 +66,7 @@ class Mobile_menu extends Component {
                 </MDBNavItem> 
                 <MDBNavItem className="mb-3">
                   <MDBDropdown href={'/jobs_list'}>
-                   <a className="ml-10 pl-0.5 pb-1" href={'/job_list'}>Jobs</a>
+                   <a className="ml-10 pl-0.5 pb-1" href={'/job_list'}>Opportunities</a>
                       {/* <MDBDropdownToggle nav caret>Jobs</MDBDropdownToggle>
                       <MDBDropdownMenu>
                         <MDBDropdownItem href={process.env.PUBLIC_URL + '/job_list'}>Job List</MDBDropdownItem>
@@ -75,7 +75,7 @@ class Mobile_menu extends Component {
                   </MDBDropdown>
                 </MDBNavItem>
                 <MDBNavItem className="mb-4">
-                <a className="ml-10 pl-0.5 pb-1 mb-4" href={'/candidate_list'}>Candidates</a>
+                <a className="ml-10 pl-0.5 pb-1 mb-4" href={'/candidate_list'}>Volunteer/Intern</a>
                     {/* <MDBDropdown>
                       <MDBDropdownToggle nav caret>Employers</MDBDropdownToggle>
                       <MDBDropdownMenu>

@@ -174,10 +174,12 @@ class Profile extends Component {
                   onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
+                    <>
+                      <p>From:</p>
                       <InputAdornment position="start">
-                        <p>From:</p>
                         {/* <DateRangeIcon /> */}
                       </InputAdornment>
+                    </>
                     ),
                   }}
                 />

@@ -28,7 +28,7 @@ export class Menu extends Component {
                             </ul> */}
                         {/* </li> */}
                         {/* <li className="mega-menu-item"> */}
-                        <a className="alert-heading ml-10" href={'/job_list'} >Jobs</a>
+                        <Link className="alert-heading ml-10" to='/job_list' >Opportunities</Link>
                             {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/job_list'}>Job List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/job_details'}>Job Details</a></li>
@@ -42,7 +42,7 @@ export class Menu extends Component {
                             </ul>
                         </li> */}
                         {/* <li className="mega-menu-item"> */}
-                        <a href={'/candidate_list'} className="alert-heading ml-10">Candidates</a>
+                        <a href={'/candidate_list'} className="alert-heading ml-10">Volunteer/Internn</a>
                             {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_list'}>Candidate List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_details'}>Candidate Details</a></li>
