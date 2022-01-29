@@ -10,7 +10,7 @@ export class Menu extends Component {
             <Router>
                 <nav style={{fontWeight: 400}} className="main-menu">         
                     {/* <ul style={{fontWeight: 400}}className="menu ml-auto font-bold featured-title"> */}
-                        <Link className= "alert-heading" to='/'>Home</Link>
+                        <a className= "alert-heading" href={'/'}>Home</a>
                         {/* <l1> className="mega-menu-item"> */}
                         {/* <a href={'/login'}>Login</a> */}
                             {/* <a href={process.env.PUBLIC_URL + '/about_us'} className="mega-menu-link">Pages</a>
@@ -28,7 +28,7 @@ export class Menu extends Component {
                             </ul> */}
                         {/* </li> */}
                         {/* <li className="mega-menu-item"> */}
-                        <Link to='/job_list' className="alert-heading ml-10">Jobs</Link>
+                        <a className="alert-heading ml-10" href={'/job_list'} >Jobs</a>
                             {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/job_list'}>Job List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/job_details'}>Job Details</a></li>
@@ -42,7 +42,7 @@ export class Menu extends Component {
                             </ul>
                         </li> */}
                         {/* <li className="mega-menu-item"> */}
-                        <Link to='/candidate_list' className="alert-heading ml-10">Candidates</Link>
+                        <a href={'/candidate_list'} className="alert-heading ml-10">Candidates</a>
                             {/* <ul className="mega-submenu">
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_list'}>Candidate List</a></li>
                                 <li><a href={process.env.PUBLIC_URL + '/candidate_details'}>Candidate Details</a></li>

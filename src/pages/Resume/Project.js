@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {TextField, Button, Container, Divider} from '@material-ui/core';
 import {Card, CardHeader, CardContent} from '@material-ui/core';
+import axios from 'axios';
+import {saveAs} from 'file-saver';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
-import SchoolIcon from '@material-ui/icons/School';
-import DateRangeIcon from '@material-ui/icons/DateRange';
+import LinkIcon from '@material-ui/icons/Link';
+import TitleIcon from '@material-ui/icons/Title';
+import DescriptionIcon from '@material-ui/icons/Description';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Row, Col} from 'react-bootstrap';
 import {Paper, withStyles, Grid} from '@material-ui/core';
-import 'date-fns';
 import Header from '../../components/layout/Header';
 import PageHeader from '../../components/layout/PageHeader';
 import { Footer } from '../../components/layout/Footer';
@@ -22,7 +24,7 @@ const styles = theme => ({
   },
 });
 
-class Profile extends Component {
+class Projects extends Component {
   continue = e => {
     e.preventDefault ();
     this.props.nextStep ();
@@ -33,108 +35,103 @@ class Profile extends Component {
     this.props.prevStep ();
   };
 
+  createAndDownloadPDF = () => {
+    axios
+      .post ('/create-pdf', this.state)
+      .then (() => {
+        axios
+          .get ('fetch-pdf', {responseType: 'blob'})
+          .then (res => {
+            const pdfBlob = new Blob ([res.data], {type: 'application/pdf'});
+            saveAs (pdfBlob, 'Resume.pdf');
+          })
+          .catch (err => {
+            console.log (err);
+          });
+      })
+      .catch (err => {
+        console.log (err);
+      });
+  };
+
   render () {
     const {values} = this.props;
     const {classes} = this.props;
 
     return (
     <>
-      <Header />
-      <PageHeader
-        title= "Resume"
-        breadcrumb="education"
-      />
-      <div>
+        <Header />
+        <PageHeader 
+            title= "Resume"
+            breadcrumb= "project"
+        />
+    
+      <Paper className={classes.padding}>
         <Card>
-          <CardHeader title="Education Details" />
+          <CardHeader title="Projects Developed" />
         </Card>
         <CardContent>
           <div className={classes.margin}>
-            <Grid container spacing={2} className="ml-0" lg={12}>
-              <Grid item md={4} sm={12} xs={12} lg={4}>
+            <Grid container spacing={2} alignItems="center" lg={12}>
+              <Grid item xs={12} lg={12}>
+                <h5>Project 1</h5>
+              </Grid>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="college"
-                  label="College/Unviersity"
+                  name="title1"
+                  label="Title"
                   style={{width: '80%'}}
                   required
-                  value={values.college}
+                  value={values.title1}
                   onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <SchoolIcon />
+                        <TitleIcon />
                       </InputAdornment>
                     ),
                   }}
                 />
               </Grid>
-              <Grid item md={4} sm={6} xs={12} lg={4}>
+              <Grid item md={4} sm={6} xs={12} lg={12}>
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="fromyear1"
-                  label=""
-                  type="date"
+                  name="link1"
+                  label="Link"
                   style={{width: '80%'}}
                   required
-                  value={values.fromyear1}
+                  value={values.link1}
                   onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        {/* <DateRangeIcon /> */}
+                        <LinkIcon />
                       </InputAdornment>
                     ),
                   }}
                 />
               </Grid>
 
-              <Grid item md={4} sm={6} xs={12} lg={4}>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="toyear1"
-                  type="date"
-                  label=""
-                  style={{width: '80%'}}
-                  required
-                  value={values.toyear1}
-                  onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment >
-                        {/* <DateRangeIcon /> */}
-                      </InputAdornment>
-                    ),
-                  }}
-                />
-              </Grid>
-
-              <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  label="Qualification"
-                  variant="outlined"
-                  style={{width: '80%'}}
-                  name="qualification1"
-                  required
-                  value={values.qualification1}
-                  onChange={this.props.handleChange}
-                />
-              </Grid>
-
-              <Grid item md={8} sm={12} xs={12} lg={8}>
-                <TextField
-                  margin="dense"
+                  name="projectDescription1"
                   label="Description"
-                  variant="outlined"
-                  style={{width: '90%'}}
-                  name="description1"
+                  style={{width: '80%'}}
                   required
-                  value={values.description1}
+                  value={values.projectDescription1}
                   onChange={this.props.handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <DescriptionIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
             </Grid>
@@ -142,96 +139,128 @@ class Profile extends Component {
             <Divider />
             <br />
             <Grid container spacing={2} alignItems="center" lg={12}>
-              <Grid item md={4} sm={12} xs={12} lg={4}>
-                <TextField
-                  margin="dense"
-                  variant="outlined"
-                  name="school"
-                  label="School"
-                  style={{width: '80%'}}
-                  required
-                  value={values.school}
-                  onChange={this.props.handleChange}
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <SchoolIcon />
-                      </InputAdornment>
-                    ),
-                  }}
-                />
+              <Grid item xs={12} lg={12}>
+                <h5>Project 2</h5>
               </Grid>
-              <Grid item md={4} sm={6} xs={12} lg={4}>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="fromyear2"
-                  label=""
-                  type="date"
+                  name="title2"
+                  label="Title"
                   style={{width: '80%'}}
                   required
-                  value={values.fromyear2}
+                  value={values.title2}
                   onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
                       <InputAdornment position="start">
-                        <p>From:</p>
-                        {/* <DateRangeIcon /> */}
+                        <TitleIcon />
                       </InputAdornment>
                     ),
                   }}
                 />
               </Grid>
-
-              <Grid item md={4} sm={6} xs={12} lg={4}>
-                {/* <CustomDatePicker
-                  name={'toyear2'}
-                  label={'To Year'}
-                  value={values.toyear2}
-                /> */}
+              <Grid item md={4} sm={6} xs={12} lg={12}>
                 <TextField
                   margin="dense"
                   variant="outlined"
-                  name="toyear2"
-                  label=""
-                  type="date"
+                  name="link2"
+                  label="Link"
                   style={{width: '80%'}}
                   required
-                  value={values.toyear2}
+                  value={values.link2}
                   onChange={this.props.handleChange}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment className="hiddenLabel" position="start">
-                        {/* <DateRangeIcon /> */}
+                      <InputAdornment position="start">
+                        <LinkIcon />
                       </InputAdornment>
                     ),
                   }}
                 />
               </Grid>
 
-              <Grid item md={4} sm={12} xs={12} lg={4}>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
                 <TextField
                   margin="dense"
-                  label="Qualification"
                   variant="outlined"
+                  name="projectDescription2"
+                  label="Description"
                   style={{width: '80%'}}
-                  name="qualification2"
                   required
-                  value={values.qualification2}
+                  value={values.projectDescription2}
                   onChange={this.props.handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <DescriptionIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+            </Grid>
+            <br />
+            <Divider />
+            <br />
+            <Grid container spacing={2} alignItems="center" lg={12}>
+              <Grid item xs={12} lg={12}>
+                <h5>Project 3</h5>
+              </Grid>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
+                <TextField
+                  margin="dense"
+                  variant="outlined"
+                  name="title3"
+                  label="Title"
+                  style={{width: '80%'}}
+                  value={values.title3}
+                  onChange={this.props.handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <TitleIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+              </Grid>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
+                <TextField
+                  margin="dense"
+                  variant="outlined"
+                  name="link3"
+                  label="Link"
+                  style={{width: '80%'}}
+                  value={values.link3}
+                  onChange={this.props.handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <LinkIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
 
-              <Grid item md={8} sm={8} xs={8} lg={8}>
+              <Grid item md={12} sm={12} xs={12} lg={12}>
                 <TextField
                   margin="dense"
-                  label="Description"
                   variant="outlined"
-                  style={{width: '90%'}}
-                  name="description2"
-                  required
-                  value={values.description2}
+                  name="projectDescription3"
+                  label="Description"
+                  style={{width: '80%'}}
+                  value={values.projectDescription3}
                   onChange={this.props.handleChange}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="start">
+                        <DescriptionIcon />
+                      </InputAdornment>
+                    ),
+                  }}
                 />
               </Grid>
             </Grid>
@@ -263,12 +292,12 @@ class Profile extends Component {
             <Col xs={4} />
           </Row>
         </Container>
-        <p className="text-center text-muted">Page 2</p>
-      </div>
+        <p className="text-center text-muted">Page 3</p>
+      </Paper>
       <Footer />
     </>
     );
   }
 }
 
-export default withStyles (styles) (Profile);
+export default withStyles (styles) (Projects);
